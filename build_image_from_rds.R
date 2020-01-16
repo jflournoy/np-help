@@ -14,7 +14,11 @@ unpack_stat_from_rds <- function(file, stat_index, subchunk = NULL){
 }
 
 save_stat_to_nii <- function(stat_index, all_stats, allmask_vertices, mask, prefix, postfix, statname){
-  outputfilename <- paste0(prefix, '.', statname, '.', postfix, '.nii.gz')
+  if(is.null(postfix)){
+    outputfilename <- paste0(prefix, '.', statname, '.nii.gz')
+  } else {
+    outputfilename <- paste0(prefix, '.', statname, '.', postfix, '.nii.gz')
+  }
   message('Working on: ', outputfilename)
   
   allmask_vertices_l <- unlist(allmask_vertices)
